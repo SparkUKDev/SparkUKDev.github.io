@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Spark Youth</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/RkMkNqTB/download.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="assets/css/global.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Outfit', 'sans-serif'], hand: ['Caveat', 'cursive'] },
+            colors: {
+              spark: { yellow: '#FFD600', orange: '#FF9F1C', blue: '#2EC4B6', navy: '#011627', cream: '#FDFFFC', red: '#E71D36' }
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-spark-cream text-spark-navy antialiased">
+    <div id="page-loader" role="status" aria-live="polite" aria-atomic="true" class="fixed inset-0 bg-spark-cream z-50 flex items-center justify-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
+        <p class="absolute mt-16 text-sm text-gray-400 font-bold animate-pulse">Loading...</p>
+    </div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 px-4 py-3 flex justify-between items-center">
+        <a href="home.html" class="flex items-center space-x-2 cursor-pointer">
+            <img src="https://i.ibb.co/RkMkNqTB/download.png" class="h-8 w-8 object-contain" alt="Spark Youth logo">
+            <h1 class="text-xl font-bold text-spark-navy tracking-tight">Spark<span class="text-spark-blue">Youth</span></h1>
+        </a>
+
+        <div class="flex items-center space-x-3">
+                <button class="safety-btn bg-spark-red hover:bg-red-600 text-white text-sm font-bold px-4 py-2 rounded-full transition-transform active:scale-95 flex items-center space-x-1 shadow-sm">
+                <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Get Help</span>
+            </button>
+
+            <!-- User Menu -->
+            <div class="relative">
+                <button id="user-menu-btn" aria-controls="user-menu-dropdown" aria-expanded="false" aria-label="User menu" class="flex items-center space-x-2 p-1 pr-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group">
+                    <div class="w-8 h-8 bg-spark-blue/10 text-spark-blue rounded-full flex items-center justify-center group-hover:bg-spark-blue group-hover:text-white transition-colors">
+                        <i data-lucide="user" class="w-[18px] h-[18px]"></i>
+                    </div>
+                    <i id="user-menu-chevron" data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 transition-transform"></i>
+                </button>
+
+                <div id="user-menu-dropdown" class="hidden absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-1 overflow-hidden animate-fade-in z-50">
+                    <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
+                        <p class="text-xs font-bold text-gray-500 uppercase">Signed in as</p>
+                        <p class="user-email-display text-sm font-bold text-spark-navy truncate">Loading...</p> <!-- Username will appear here -->
+                    </div>
+                    <a href="profile.html" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                        <i data-lucide="user" class="w-4 h-4 text-gray-400"></i> Profile
+                    </a>
+                    <a href="settings.html" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                        <i data-lucide="settings" class="w-4 h-4"></i> Settings
+                    </a>
+                    <!-- ADMIN PANEL LINK - ADDED HERE -->
+                    <a href="admin.html" id="admin-panel-dropdown-link" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2 hidden">
+                        <i data-lucide="shield" class="w-4 h-4 text-gray-400"></i> Admin Panel
+                    </a>
+                    <div class="h-px bg-gray-100 my-1"></div>
+                    <button id="sign-out-btn" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 font-bold flex items-center gap-2">
+                        <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+
+            <button id="mobile-menu-btn" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open main menu" class="p-2 text-spark-navy md:hidden hover:bg-gray-100 rounded-lg">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-30 bg-white pt-20 px-6 md:hidden animate-fade-in overflow-y-auto pb-10">
+        <div class="flex flex-col space-y-2">
+            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-3">Menu</div>
+            <a href="home.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors bg-spark-blue text-white font-bold shadow-sm">
+                <i data-lucide="home" class="w-5 h-5"></i><span>Home Dashboard</span>
+            </a>
+            <a href="resources.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="book-open" class="w-5 h-5"></i><span>Resource Library</span>
+            </a>
+            <a href="settings.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="settings" class="w-5 h-5"></i><span>Settings</span>
+            </a>
+            <!-- ADMIN PANEL LINK FOR MOBILE - ADDED HERE -->
+            <a href="admin.html" id="admin-panel-mobile-link" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100 hidden">
+                <i data-lucide="shield" class="w-5 h-5"></i><span>Admin Panel</span>
+            </a>
+            <div class="h-px bg-gray-100 my-2"></div>
+            <a href="forums.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="users" class="w-5 h-5"></i><span>Forums</span>
+            </a>
+            <a href="opportunities.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="lightbulb" class="w-5 h-5"></i><span>Get Involved</span>
+            </a>
+            <a href="live.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="tv" class="w-5 h-5"></i><span>Spark TV</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="flex flex-1 max-w-7xl mx-auto w-full">
+        <!-- DESKTOP SIDEBAR -->
+        <aside class="hidden md:flex flex-col w-64 p-6 sticky top-16 h-[calc(100vh-4rem)]">
+            <div class="flex-1 overflow-y-auto custom-scrollbar">
+                <nav class="space-y-1 mb-6">
+                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-3">Main</div>
+                    <a href="home.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors bg-spark-blue text-white font-bold shadow-sm">
+                        <i data-lucide="home" class="w-5 h-5"></i><span>Home</span>
+                    </a>
+                    <a href="resources.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                        <i data-lucide="book-open" class="w-5 h-5"></i><span>Resources</span>
+                    </a>
+                    <!-- ADMIN PANEL LINK FOR DESKTOP SIDEBAR - ADDED HERE -->
+                    <a href="admin.html" id="admin-panel-sidebar-link" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100 hidden">
+                        <i data-lucide="shield" class="w-5 h-5"></i><span>Admin Panel</span>
+                    </a>
+                </nav>
+                <nav class="space-y-1">
+                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-3">Community</div>
+                    <a href="forums.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                        <i data-lucide="users" class="w-5 h-5"></i><span>Forums</span>
+                    </a>
+                    <a href="opportunities.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                        <i data-lucide="lightbulb" class="w-5 h-5"></i><span>Get Involved</span>
+                    </a>
+                    <a href="live.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                        <i data-lucide="tv" class="w-5 h-5"></i><span>Spark TV</span>
+                    </a>
+                </nav>
+                <div class="mt-8 p-4 bg-gradient-to-br from-spark-blue/20 to-spark-yellow/20 rounded-2xl">
+                    <h3 class="font-hand text-2xl font-bold text-spark-navy mb-2">You matter!</h3>
+                    <p class="text-xs text-gray-600">Spark Youth is designed by young people, for young people.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main id="main-content" class="flex-1 p-4 md:p-8 overflow-y-auto pb-24 md:pb-8 hidden">
+            <div class="space-y-8 animate-fade-in">
+                <!-- Welcome -->
+                <div class="bg-spark-navy rounded-3xl p-8 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-spark-blue rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/3"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-2">Hey there! 👋</h2>
+                        <p class="text-gray-300 max-w-lg">Welcome to your safe space. Whether you're soaring high or feeling a bit low, we're here to Spark a conversation.</p>
+                    </div>
+                </div>
+
+                <!-- Mood Checker -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                    <h3 class="text-xl font-bold text-spark-navy mb-4 flex items-center gap-2">
+                        <i data-lucide="sun" class="text-spark-orange"></i> How are you feeling today?
+                    </h3>
+                    
+                    <div id="mood-selector" class="grid grid-cols-3 md:grid-cols-5 gap-4">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div id="mood-result" class="text-center py-8 animate-fade-in hidden">
+                        <p id="mood-emoji-result" class="text-4xl mb-4"></p>
+                        <h4 id="mood-text-result" class="text-2xl font-bold text-spark-navy mb-2">Finding the right words...</h4>
+                        <p class="text-gray-500 text-sm">Thanks for checking in.</p>
+                        <button id="reset-mood" class="mt-6 text-spark-blue underline hover:text-spark-navy transition">Check in again</button>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Daily Challenge -->
+                    <div class="bg-spark-yellow/10 border border-spark-yellow rounded-3xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-bold text-lg text-spark-navy flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="text-spark-orange"></i> Daily Spark
+                                </h3>
+                                <span class="text-xs font-bold bg-white px-2 py-1 rounded-lg text-spark-orange">Today</span>
+                            </div>
+                            <div id="challenge-container">
+                                <div class="h-20 flex items-center text-gray-400">Loading challenge...</div>
+                            </div>
+                        </div>
+                        <button class="mt-6 w-full bg-white py-2 rounded-xl text-spark-navy font-bold text-sm hover:bg-spark-yellow hover:text-white transition-colors shadow-sm">Mark as Complete</button>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="space-y-4">
+                        <a href="resources.html" class="block group cursor-pointer bg-white border border-gray-200 rounded-3xl p-6 relative overflow-hidden transition-transform hover:scale-[1.02] h-full flex flex-col justify-center">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-bold text-xl text-spark-navy">Resource Library</h3>
+                                    <p class="text-gray-500 text-sm mt-1">Explore articles on anxiety, sleep & more.</p>
+                                </div>
+                                <i data-lucide="book-open" class="text-spark-blue w-6 h-6"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Bottom Nav -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-3 flex justify-between items-center z-30">
+        <a href="home.html" class="text-spark-blue"><i data-lucide="home" class="w-6 h-6"></i></a>
+        <a href="resources.html" class="text-gray-400"><i data-lucide="book-open" class="w-6 h-6"></i></a>
+        <a href="forums.html" class="text-gray-400"><i data-lucide="users" class="w-6 h-6"></i></a>
+    </div>
+
+    <!-- Safety Modal -->
+    <div id="safety-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-spark-navy/80 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl">
+            <div class="bg-spark-red p-6 text-white relative">
+                <button id="close-safety-modal" class="absolute top-4 right-4 bg-white/20 rounded-full p-1 hover:bg-white/30 transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                <h2 class="text-2xl font-bold flex items-center gap-2">
+                    <i data-lucide="alert-triangle" class="animate-pulse"></i> Need help right now?
+                </h2>
+                <p class="mt-2 text-white/90 text-sm">If you or someone else is in danger, please call 999 immediately. You are not alone.</p>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                    <h3 class="font-bold text-spark-navy mb-2">Free & Confidential Support</h3>
+                    <a href="tel:08001111" class="flex items-center gap-4 p-3 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-spark-blue transition-colors group mb-3">
+                        <div class="bg-green-100 text-green-600 p-2 rounded-full group-hover:scale-110 transition-transform"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                        <div><p class="font-bold text-gray-800">Childline</p><p class="text-xs text-gray-500">Call 0800 1111 (24/7)</p></div>
+                    </a>
+                    <a href="sms:85258" class="flex items-center gap-4 p-3 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-spark-blue transition-colors group">
+                        <div class="bg-blue-100 text-blue-600 p-2 rounded-full group-hover:scale-110 transition-transform"><i data-lucide="message-square" class="w-5 h-5"></i></div>
+                        <div><p class="font-bold text-gray-800">SHOUT</p><p class="text-xs text-gray-500">Text 'SHOUT' to 85258</p></div>
+                    </a>
+                </div>
+                <button id="close-safety-action" class="w-full py-3 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="assets/js/layout.js"></script>
+    <script type="module">
+        // IMPORTANT: Auth Check is separated from AI to prevent blocking
+        import { initAuthCheck, signOut, auth } from './assets/js/firebase.js'; // Import signOut and auth
+        
+        // Start Auth Check Immediately
+        initAuthCheck(); // This will now populate the .user-email-display with the Firestore username
+
+        // --- Page Specific Logic ---
+        const moodSelector = document.getElementById('mood-selector');
+        const moodResult = document.getElementById('mood-result');
+        const moodEmojiResult = document.getElementById('mood-emoji-result');
+        const moodTextResult = document.getElementById('mood-text-result');
+        const resetMood = document.getElementById('reset-mood');
+        const challengeContainer = document.getElementById('challenge-container');
+
+        const moods = [
+            { type: 'Great', emoji: '😁', color: 'bg-green-100 border-green-300' },
+            { type: 'Good', emoji: '🙂', color: 'bg-blue-100 border-blue-300' },
+            { type: 'Okay', emoji: '😐', color: 'bg-yellow-100 border-yellow-300' },
+            { type: 'Meh', emoji: '😞', color: 'bg-orange-100 border-orange-300' },
+            { type: 'Stressed', emoji: '😫', color: 'bg-red-100 border-red-300' },
+        ];
+
+        // Initialize Mood Buttons
+        if (moodSelector) {
+            moods.forEach(m => {
+                const btn = document.createElement('button');
+                btn.className = `aspect-square flex flex-col items-center justify-center rounded-2xl border-2 border-transparent hover:scale-105 transition-all ${m.color}`;
+                btn.innerHTML = `<span class="text-4xl mb-2">${m.emoji}</span><span class="text-sm font-semibold text-gray-700">${m.type}</span>`;
+                
+                btn.addEventListener('click', async () => {
+                    moodSelector.classList.add('hidden');
+                    moodResult.classList.remove('hidden');
+                    moodEmojiResult.textContent = m.emoji;
+                    moodTextResult.textContent = "Thinking...";
+                    
+                    // Dynamic Import for AI - Prevents Page Crash if AI fails
+                    try {
+                        const { getMoodAffirmation } = await import('./assets/js/gemini.js');
+                        const text = await getMoodAffirmation(m.type);
+                        moodTextResult.textContent = text;
+                    } catch (e) {
+                        console.warn("AI module failed to load:", e);
+                        moodTextResult.textContent = "You are doing great today.";
+                    }
+                });
+                moodSelector.appendChild(btn);
+            });
+        }
+
+        if (resetMood) {
+            resetMood.addEventListener('click', () => {
+                moodResult.classList.add('hidden');
+                moodSelector.classList.remove('hidden');
+            });
+        }
+
+        // Load Challenge via Dynamic Import
+        (async () => {
+            try {
+                const { getDailyChallenge } = await import('./assets/js/gemini.js');
+                const c = await getDailyChallenge();
+                if (challengeContainer) {
+                    challengeContainer.innerHTML = `<h4 class="text-xl font-bold text-spark-navy mb-2">${c.title}</h4><p class="text-gray-700">${c.description}</p>`;
+                }
+            } catch (err) {
+                console.warn("AI Load Error:", err);
+                if (challengeContainer) {
+                    challengeContainer.innerHTML = `<h4 class="text-xl font-bold text-spark-navy mb-2">Breathe</h4><p class="text-gray-700">Take 3 deep breaths. You got this.</p>`;
+                }
+            }
+        })();
+
+        // --- NEW: Logout Button Logic ---
+        const signOutButton = document.getElementById('sign-out-btn');
+        if (signOutButton) {
+            signOutButton.addEventListener('click', async () => {
+                try {
+                    await signOut(auth);
+                    // initAuthCheck will automatically redirect to auth.html after signOut
+                } catch (error) {
+                    console.error("Error signing out:", error);
+                    alert("Failed to sign out. Please try again.");
+                }
+            });
+        }
+        // --- END NEW ---
+    </script>
+</body>
+</html>

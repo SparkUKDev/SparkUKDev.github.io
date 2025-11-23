@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings | Spark Youth</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/RkMkNqTB/download.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="assets/css/global.css">
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: { sans: ['Outfit', 'sans-serif'], hand: ['Caveat', 'cursive'] },
+                        colors: {
+                            spark: { yellow: '#FFD600', orange: '#FF9F1C', blue: '#2EC4B6', navy: '#011627', cream: '#FDFFFC', red: '#E71D36' }
+                        }
+                    }
+                }
+            }
+        </script>
+</head>
+<body class="bg-spark-cream text-spark-navy antialiased">
+    <div id="page-loader" role="status" aria-live="polite" aria-atomic="true" class="fixed inset-0 bg-spark-cream z-50 flex items-center justify-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
+        <p class="absolute mt-16 text-sm text-gray-400 font-bold animate-pulse">Loading...</p>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-gray-100 px-4 py-3 flex justify-between items-center">
+        <a href="home.html" class="flex items-center space-x-2 cursor-pointer">
+            <img src="https://i.ibb.co/RkMkNqTB/download.png" class="h-8 w-8 object-contain" alt="Spark Youth logo">
+            <h1 class="text-xl font-bold text-spark-navy tracking-tight">Spark<span class="text-spark-blue">Youth</span></h1>
+        </a>
+
+        <div class="flex items-center space-x-3">
+                <button class="safety-btn bg-spark-red hover:bg-red-600 text-white text-sm font-bold px-4 py-2 rounded-full transition-transform active:scale-95 flex items-center space-x-1 shadow-sm">
+                <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Get Help</span>
+            </button>
+
+            <!-- User Menu -->
+            <div class="relative">
+                <button id="user-menu-btn" aria-controls="user-menu-dropdown" aria-expanded="false" aria-label="User menu" class="flex items-center space-x-2 p-1 pr-2 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors group">
+                    <div class="w-8 h-8 bg-spark-blue/10 text-spark-blue rounded-full flex items-center justify-center group-hover:bg-spark-blue group-hover:text-white transition-colors">
+                        <i data-lucide="user" class="w-[18px] h-[18px]"></i>
+                    </div>
+                    <i id="user-menu-chevron" data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 transition-transform"></i>
+                </button>
+
+                <div id="user-menu-dropdown" class="hidden absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-1 overflow-hidden animate-fade-in z-50">
+                    <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
+                        <p class="text-xs font-bold text-gray-500 uppercase">Signed in as</p>
+                        <p class="user-email-display text-sm font-bold text-spark-navy truncate">Loading...</p>
+                    </div>
+                    <a href="profile.html" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                        <i data-lucide="user" class="w-4 h-4 text-gray-400"></i> Profile
+                    </a>
+                    <a href="settings.html" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                        <i data-lucide="settings" class="w-4 h-4"></i> Settings
+                    </a>
+                    <!-- ADMIN PANEL LINK - ADDED HERE -->
+                    <a href="admin.html" id="admin-panel-dropdown-link" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2 hidden">
+                        <i data-lucide="shield" class="w-4 h-4 text-gray-400"></i> Admin Panel
+                    </a>
+                    <div class="h-px bg-gray-100 my-1"></div>
+                    <button id="sign-out-btn" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 font-bold flex items-center gap-2">
+                        <i data-lucide="log-out" class="w-4 h-4"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+
+            <button id="mobile-menu-btn" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open main menu" class="p-2 text-spark-navy md:hidden hover:bg-gray-100 rounded-lg">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-30 bg-white pt-20 px-6 md:hidden animate-fade-in overflow-y-auto pb-10">
+        <div class="flex flex-col space-y-2">
+            <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-3">Menu</div>
+            <a href="home.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors bg-spark-blue text-white font-bold shadow-sm">
+                <i data-lucide="home" class="w-5 h-5"></i><span>Home Dashboard</span>
+            </a>
+            <a href="resources.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="book-open" class="w-5 h-5"></i><span>Resource Library</span>
+            </a>
+            <a href="settings.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="settings" class="w-5 h-5"></i><span>Settings</span>
+            </a>
+            <!-- ADMIN PANEL LINK FOR MOBILE - ADDED HERE -->
+            <a href="admin.html" id="admin-panel-mobile-link" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100 hidden">
+                <i data-lucide="shield" class="w-5 h-5 text-gray-400"></i><span>Admin Panel</span>
+            </a>
+            <div class="h-px bg-gray-100 my-2"></div>
+            <a href="forums.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="users" class="w-5 h-5"></i><span>Forums</span>
+            </a>
+            <a href="opportunities.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="lightbulb" class="w-5 h-5"></i><span>Get Involved</span>
+            </a>
+            <a href="live.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                <i data-lucide="tv" class="w-5 h-5"></i><span>Spark TV</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="flex flex-1 max-w-7xl mx-auto w-full">
+        <aside class="hidden md:flex flex-col w-64 p-6 sticky top-16 h-[calc(100vh-4rem)]">
+            <div class="flex-1 overflow-y-auto custom-scrollbar">
+                <nav class="space-y-1 mb-6">
+                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-3">Main</div>
+                    <a href="home.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100"><i data-lucide="home" class="w-5 h-5"></i><span>Home</span></a>
+                    <a href="resources.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100"><i data-lucide="book-open" class="w-5 h-5"></i><span>Resources</span></a>
+                    <a href="settings.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100"><i data-lucide="settings" class="w-5 h-5"></i><span>Settings</span></a>
+                </nav>
+            </div>
+        </aside>
+
+        <main id="main-content" class="flex-1 p-4 md:p-8 overflow-y-auto pb-24 md:pb-8 hidden">
+            <div class="space-y-6 animate-fade-in">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                    <h2 class="text-2xl font-bold text-spark-navy mb-2">User Settings</h2>
+                    <p class="text-gray-500 text-sm mb-4">Change your display name and preferred mood. Changes are saved locally; if signed in, your display name will be saved to your account profile.</p>
+
+                    <form class="max-w-md space-y-4">
+                        <div>
+                            <label for="displayName" class="block text-xs font-bold text-gray-500 uppercase mb-1">Display Name</label>
+                                <input id="displayName" type="text" class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none" placeholder="Your display name" />
+                        </div>
+
+                        <div>
+                            <label for="preferredMood" class="block text-xs font-bold text-gray-500 uppercase mb-1">Preferred Mood</label>
+                            <select id="preferredMood" class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none">
+                                <option value="">(none)</option>
+                                <option>Great</option>
+                                <option>Good</option>
+                                <option>Okay</option>
+                                <option>Meh</option>
+                                <option>Stressed</option>
+                            </select>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <button id="save-settings" class="bg-spark-blue text-white px-5 py-3 rounded-xl font-bold">Save</button>
+                            <button id="clear-settings" class="bg-gray-100 text-gray-700 px-4 py-3 rounded-xl font-bold">Clear</button>
+                            <p id="settings-status" class="text-sm ml-2"></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="assets/js/layout.js"></script>
+    <script type="module">
+        import { initAuthCheck } from './assets/js/firebase.js';
+        initAuthCheck();
+    </script>
+    <script type="module" src="assets/js/settings.js"></script>
+</body>
+</html>

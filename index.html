@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spark Youth</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/RkMkNqTB/download.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/global.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              spark: { yellow: '#FFD600', orange: '#FF9F1C', blue: '#2EC4B6', navy: '#011627', cream: '#FDFFFC', red: '#E71D36' }
+            }
+          }
+        }
+      }
+    </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-spark-cream flex items-center justify-center min-h-screen">
+    <div class="flex flex-col items-center gap-4 text-center p-4">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
+        <p class="text-spark-navy font-bold animate-pulse">Sparking up...</p>
+        <div id="error-msg" role="alert" aria-live="assertive" aria-atomic="true" class="text-red-500 text-sm hidden mt-4 max-w-md bg-red-50 p-4 rounded-xl border border-red-100">
+            <p class="font-bold mb-1">Connection Issue</p>
+            <p>This is taking longer than expected. Please ensure you are connected to the internet.</p>
+            <button onclick="window.location.replace('auth.html')" class="mt-3 bg-red-100 text-red-600 px-4 py-2 rounded-lg text-xs font-bold hover:bg-red-200 transition">
+                Go to Login Manually
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Safety Timer: If Firebase takes too long, show error or redirect
+        setTimeout(() => {
+            if (window.location.protocol === 'file:') {
+                const err = document.getElementById('error-msg');
+                err.innerHTML = "<strong>Security Error:</strong> Apps cannot run directly from a file (file://).<br>Please use a local server (like Live Server in VS Code).";
+                err.classList.remove('hidden');
+            } else {
+                // If we are still here after 3 seconds, something might be stuck.
+                // We show the manual button just in case, but try to redirect first.
+                console.warn("Auth check slow, attempting fallback redirect...");
+                window.location.replace('auth.html');
+                
+                // If redirect fails (rare), show UI
+                document.getElementById('error-msg').classList.remove('hidden');
+            }
+        }, 3500);
+    </script>
+
+    <script type="module">
+        import { auth, onAuthStateChanged } from './assets/js/firebase.js';
+
+        console.log("Firebase init on Index...");
+
+        onAuthStateChanged(auth, (user) => {
+            console.log("Auth State Changed:", user ? "Logged In" : "Guest");
+            if (user) {
+                window.location.replace('home.html');
+            } else {
+                window.location.replace('auth.html');
+            }
+        });
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
