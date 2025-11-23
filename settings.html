@@ -147,6 +147,34 @@
             </main>
         </div>
 
+    <!-- Safety Modal -->
+  <div id="safety-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-spark-navy/80 backdrop-blur-sm animate-fade-in">
+      <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl">
+          <div class="bg-spark-red p-6 text-white relative">
+              <button id="close-safety-modal" class="absolute top-4 right-4 bg-white/20 rounded-full p-1 hover:bg-white/30 transition">
+                  <i data-lucide="x" class="w-5 h-5"></i>
+              </button>
+              <h2 class="text-2xl font-bold flex items-center gap-2">
+                  <i data-lucide="alert-triangle" class="animate-pulse"></i> Need help right now?
+              </h2>
+              <p class="mt-2 text-white/90 text-sm">If you or someone else is in danger, please call 999 immediately. You are not alone.</p>
+          </div>
+          <div class="p-6 space-y-4">
+              <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                  <h3 class="font-bold text-spark-navy mb-2">Free & Confidential Support</h3>
+                  <a href="tel:08001111" class="flex items-center gap-4 p-3 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-spark-blue transition-colors group mb-3">
+                      <div class="bg-green-100 text-green-600 p-2 rounded-full group-hover:scale-110 transition-transform"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                      <div><p class="font-bold text-gray-800">Childline</p><p class="text-xs text-gray-500">Call 0800 1111 (24/7)</p></div>
+                  </a>
+                  <a href="sms:85258" class="flex items-center gap-4 p-3 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-spark-blue transition-colors group">
+                      <div class="bg-blue-100 text-blue-600 p-2 rounded-full group-hover:scale-110 transition-transform"><i data-lucide="message-square" class="w-5 h-5"></i></div>
+                      <div><p class="font-bold text-gray-800">SHOUT</p><p class="text-xs text-gray-500">Text 'SHOUT' to 85258</p></div>
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+
     <script type="module" src="assets/js/layout.js"></script>
     <script type="module">
         import { initAuthCheck } from './assets/js/firebase.js';

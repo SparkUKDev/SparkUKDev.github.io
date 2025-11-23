@@ -81,6 +81,9 @@
         <!-- Main Content Area -->
         <main id="main-content" class="flex-1 p-4 md:p-8 overflow-y-auto pb-24 md:pb-8 hidden">
             <div class="space-y-8 animate-fade-in">
+                <a href="home.html" class="inline-flex items-center gap-2 text-spark-blue font-bold hover:underline mb-2">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i> Back to Home
+                </a>
                 <div class="bg-spark-navy rounded-3xl p-8 text-white relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-spark-blue rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/3"></div>
                     <div class="relative z-10">
@@ -91,12 +94,14 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Current Admin Info -->
-                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-                        <h3 class="text-xl font-bold text-spark-navy mb-4 flex items-center gap-2">
-                            <i data-lucide="user-check" class="text-spark-blue"></i> Your Admin Profile
-                        </h3>
-                        <p class="text-gray-700 mb-2"><strong>UID:</strong> <span id="admin-uid">Loading...</span></p>
-                        <p class="text-gray-700"><strong>Roles:</strong> <span id="admin-roles">Loading...</span></p>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 self-start h-full md:h-64 flex flex-col justify-between">
+                        <div class="flex flex-col space-y-4">
+                            <h3 class="text-xl font-bold text-spark-navy flex items-center gap-2">
+                                <i data-lucide="user-check" class="text-spark-blue"></i> Your Admin Profile
+                            </h3>
+                            <p class="text-gray-700 mt-3"><strong>UID:</strong> <span id="admin-uid">Loading...</span></p>
+                            <p class="text-gray-700"><strong>Roles:</strong> <span id="admin-roles">Loading...</span></p>
+                        </div>
                     </div>
 
                     <!-- Fetch All Users Proof of Concept -->
@@ -232,5 +237,34 @@
         // --- End Logout Button Logic ---
 
     </script>
+
+    <!-- Safety Modal -->
+    <div id="safety-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-spark-navy/80 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl">
+            <div class="bg-spark-red p-6 text-white relative">
+                <button id="close-safety-modal" class="absolute top-4 right-4 bg-white/20 rounded-full p-1 hover:bg-white/30 transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                <h2 class="text-2xl font-bold flex items-center gap-2">
+                    <i data-lucide="alert-triangle" class="animate-pulse"></i> Need help right now?
+                </h2>
+                <p class="mt-2 text-white/90 text-sm">If you or someone else is in danger, please call 999 immediately. You are not alone.</p>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+                    <h3 class="font-bold text-spark-navy mb-2">Free & Confidential Support</h3>
+                    <a href="tel:08001111" class="flex items-center gap-4 p-3 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-spark-blue transition-colors group mb-3">
+                        <div class="bg-green-100 text-green-600 p-2 rounded-full group-hover:scale-110 transition-transform"><i data-lucide="phone" class="w-5 h-5"></i></div>
+                        <div><p class="font-bold text-gray-800">Childline</p><p class="text-xs text-gray-500">Call 0800 1111 (24/7)</p></div>
+                    </a>
+                    <a href="sms:85258" class="flex items-center gap-4 p-3 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-spark-blue transition-colors group">
+                        <div class="bg-blue-100 text-blue-600 p-2 rounded-full group-hover:scale-110 transition-transform"><i data-lucide="message-square" class="w-5 h-5"></i></div>
+                        <div><p class="font-bold text-gray-800">SHOUT</p><p class="text-xs text-gray-500">Text 'SHOUT' to 85258</p></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
