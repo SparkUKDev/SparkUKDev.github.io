@@ -1,5 +1,5 @@
-firebase.js
-gemini.js
-layout.js
-profile.js
-settings.js
+assets/js/firebase.js
+assets/js/layout.js
+assets/js/profile.js
+assets/js/settings.js
+assets/js/gemini.js
