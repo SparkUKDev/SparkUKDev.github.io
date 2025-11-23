@@ -107,52 +107,45 @@
         </div>
     </div>
 
-    <div class="flex flex-1 max-w-7xl mx-auto w-full">
-        <aside class="hidden md:flex flex-col w-64 p-6 sticky top-16 h-[calc(100vh-4rem)]">
-            <div class="flex-1 overflow-y-auto custom-scrollbar">
-                <nav class="space-y-1 mb-6">
-                    <div class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 px-3">Main</div>
-                    <a href="home.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100"><i data-lucide="home" class="w-5 h-5"></i><span>Home</span></a>
-                    <a href="resources.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100"><i data-lucide="book-open" class="w-5 h-5"></i><span>Resources</span></a>
-                    <a href="settings.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100"><i data-lucide="settings" class="w-5 h-5"></i><span>Settings</span></a>
-                </nav>
-            </div>
-        </aside>
 
-        <main id="main-content" class="flex-1 p-4 md:p-8 overflow-y-auto pb-24 md:pb-8 hidden">
-            <div class="space-y-6 animate-fade-in">
-                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-                    <h2 class="text-2xl font-bold text-spark-navy mb-2">User Settings</h2>
-                    <p class="text-gray-500 text-sm mb-4">Change your display name and preferred mood. Changes are saved locally; if signed in, your display name will be saved to your account profile.</p>
+        <div class="flex flex-1 max-w-2xl mx-auto w-full p-6">
+            <main id="main-content" class="flex-1 p-4 md:p-8 overflow-y-auto pb-24 md:pb-8 hidden">
+                <div class="space-y-6 animate-fade-in">
+                    <a href="home.html" class="inline-flex items-center gap-2 text-spark-blue font-bold hover:underline mb-2">
+                        <i data-lucide="arrow-left" class="w-5 h-5"></i> Back to Home
+                    </a>
+                    <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                        <h2 class="text-2xl font-bold text-spark-navy mb-2">User Settings</h2>
+                        <p class="text-gray-500 text-sm mb-4">Change your display name and preferred mood. Changes are saved locally; if signed in, your display name will be saved to your account profile.</p>
 
-                    <form class="max-w-md space-y-4">
-                        <div>
-                            <label for="displayName" class="block text-xs font-bold text-gray-500 uppercase mb-1">Display Name</label>
+                        <form class="max-w-md space-y-4">
+                            <div>
+                                <label for="displayName" class="block text-xs font-bold text-gray-500 uppercase mb-1">Display Name</label>
                                 <input id="displayName" type="text" class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none" placeholder="Your display name" />
-                        </div>
+                            </div>
 
-                        <div>
-                            <label for="preferredMood" class="block text-xs font-bold text-gray-500 uppercase mb-1">Preferred Mood</label>
-                            <select id="preferredMood" class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none">
-                                <option value="">(none)</option>
-                                <option>Great</option>
-                                <option>Good</option>
-                                <option>Okay</option>
-                                <option>Meh</option>
-                                <option>Stressed</option>
-                            </select>
-                        </div>
+                            <div>
+                                <label for="preferredMood" class="block text-xs font-bold text-gray-500 uppercase mb-1">Preferred Mood</label>
+                                <select id="preferredMood" class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none">
+                                    <option value="">(none)</option>
+                                    <option>Great</option>
+                                    <option>Good</option>
+                                    <option>Okay</option>
+                                    <option>Meh</option>
+                                    <option>Stressed</option>
+                                </select>
+                            </div>
 
-                        <div class="flex items-center gap-3">
-                            <button id="save-settings" class="bg-spark-blue text-white px-5 py-3 rounded-xl font-bold">Save</button>
-                            <button id="clear-settings" class="bg-gray-100 text-gray-700 px-4 py-3 rounded-xl font-bold">Clear</button>
-                            <p id="settings-status" class="text-sm ml-2"></p>
-                        </div>
-                    </form>
+                            <div class="flex items-center gap-3">
+                                <button id="save-settings" class="bg-spark-blue text-white px-5 py-3 rounded-xl font-bold">Save</button>
+                                <button id="clear-settings" class="bg-gray-100 text-gray-700 px-4 py-3 rounded-xl font-bold">Clear</button>
+                                <p id="settings-status" class="text-sm ml-2"></p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </main>
-    </div>
+            </main>
+        </div>
 
     <script type="module" src="assets/js/layout.js"></script>
     <script type="module">

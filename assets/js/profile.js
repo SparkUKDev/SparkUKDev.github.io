@@ -105,8 +105,3 @@ onAuthStateChanged(auth, async (user) => {
 const signOutBtn = document.getElementById('sign-out-btn');
 if (signOutBtn) signOutBtn.addEventListener('click', async () => { await signOut(auth); window.location.href = 'auth.html'; });
 
-// Small hook for Edit Profile (placeholder)
-const editBtn = document.getElementById('edit-profile');
-if (editBtn) editBtn.addEventListener('click', () => {
-  alert('Edit profile is not implemented in this version.');
-});

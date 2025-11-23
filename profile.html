@@ -87,13 +87,6 @@
         <a href="resources.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
           <i data-lucide="book-open" class="w-5 h-5"></i><span>Resource Library</span>
         </a>
-        <a href="settings.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
-          <i data-lucide="settings" class="w-5 h-5"></i><span>Settings</span>
-        </a>
-        <!-- ADMIN PANEL LINK FOR MOBILE - ADDED HERE -->
-        <a href="admin.html" id="admin-panel-mobile-link" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100 hidden">
-          <i data-lucide="shield" class="w-5 h-5 text-gray-400"></i><span>Admin Panel</span>
-        </a>
         <div class="h-px bg-gray-100 my-2"></div>
         <a href="forums.html" class="flex items-center space-x-3 w-full p-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
           <i data-lucide="users" class="w-5 h-5"></i><span>Forums</span>
@@ -110,6 +103,9 @@
     <div class="flex flex-1 max-w-5xl mx-auto w-full p-6">
     <main id="profile-main" class="flex-1 p-4 md:p-8 overflow-y-auto pb-24 md:pb-8 hidden">
       <div class="space-y-6 animate-fade-in">
+        <a href="home.html" class="inline-flex items-center gap-2 text-spark-blue font-bold hover:underline mb-2">
+          <i data-lucide="arrow-left" class="w-5 h-5"></i> Back to Home
+        </a>
         <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-6">
           <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
             <img id="profile-avatar" src="" alt="Profile picture" class="w-full h-full object-cover" />
@@ -119,7 +115,7 @@
             <h2 id="profile-username" class="text-2xl font-bold text-spark-navy">Username</h2>
 
             <div class="mt-4">
-              <button id="edit-profile" class="bg-spark-blue text-white px-4 py-2 rounded-xl font-bold mr-2">Edit Profile</button>
+              <a href="settings.html" id="edit-profile" class="bg-spark-blue text-white px-4 py-2 rounded-xl font-bold mr-2 inline-block">Edit Profile</a>
             </div>
           </div>
         </div>
