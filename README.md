@@ -1,6 +1,6 @@
 # Spark Youth
 
-## Project structure (example)
+## Project structure
 - /assets — CSS & JavaScript
 - /docs — contributor guides and policies
 - /img — Images
