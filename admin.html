@@ -101,6 +101,11 @@
                             </h3>
                             <p class="text-gray-700 mt-3"><strong>UID:</strong> <span id="admin-uid">Loading...</span></p>
                             <p class="text-gray-700"><strong>Roles:</strong> <span id="admin-roles">Loading...</span></p>
+                            <!-- Total Users Count -->
+                            <p class="text-gray-700"><strong>Total Users:</strong> <span id="total-users-count">Loading...</span></p>
+                            <button id="refresh-analytics-btn" class="bg-spark-orange hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300 shadow-sm mt-4">
+                                Refresh Analytics
+                            </button>
                         </div>
                     </div>
 
@@ -114,6 +119,33 @@
                         </button>
                         <div id="users-list" class="mt-4 space-y-2 max-h-60 overflow-y-auto custom-scrollbar text-sm">
                             <p class="text-gray-500">Click the button to load user data.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Section -->
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-spark-navy mb-4 flex items-center gap-2">
+                        <i data-lucide="bar-chart-2" class="text-spark-blue"></i> User Activity Analytics
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Daily Active Users Chart Container -->
+                        <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                            <h3 class="text-xl font-bold text-spark-navy mb-4">Daily Active Users</h3>
+                            <canvas id="dauChart"></canvas>
+                        </div>
+
+                        <!-- New User Signups Chart Container -->
+                        <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                            <h3 class="text-xl font-bold text-spark-navy mb-4">New User Sign-ups</h3>
+                            <canvas id="newUserChart"></canvas>
+                        </div>
+                        
+                        <!-- Top Visited Pages Chart Container -->
+                        <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 col-span-full">
+                            <h3 class="text-xl font-bold text-spark-navy mb-4">Top 5 Visited Pages</h3>
+                            <canvas id="topPagesChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -133,10 +165,48 @@
         const mainContent = document.getElementById('main-content');
         const adminUid = document.getElementById('admin-uid');
         const adminRoles = document.getElementById('admin-roles');
+        const totalUsersCount = document.getElementById('total-users-count'); // Element for total user count
         const fetchUsersBtn = document.getElementById('fetch-users-btn');
         const usersList = document.getElementById('users-list');
         const adminPanelDropdownLink = document.getElementById('admin-panel-dropdown-link');
         const signOutButton = document.getElementById('sign-out-btn');
+        const refreshAnalyticsBtn = document.getElementById('refresh-analytics-btn'); // Element for refresh button
+
+
+        // --- Function to fetch and display the total number of users ---
+        async function fetchAndDisplayTotalUsers() {
+            console.log("Fetching total users count for POC...");
+            if (refreshAnalyticsBtn) {
+                refreshAnalyticsBtn.textContent = 'Refreshing...';
+                refreshAnalyticsBtn.disabled = true;
+            }
+
+            try {
+                // Fetch the aggregated analytics data from Firestore
+                // This assumes your Cloud Function is writing to 'analytics/latest'
+                const analyticsDocRef = doc(db, "analytics", "latest");
+                const analyticsDocSnap = await getDoc(analyticsDocRef);
+
+                if (analyticsDocSnap.exists()) {
+                    const data = analyticsDocSnap.data();
+                    totalUsersCount.textContent = data.totalUsers?.toLocaleString() || 'N/A';
+                    console.log(`Total Users (from Firestore): ${data.totalUsers}`);
+                } else {
+                    console.warn("No aggregated analytics data found in Firestore (analytics/latest). Make sure your Cloud Function is deployed and running.");
+                    totalUsersCount.textContent = 'N/A (No data yet)';
+                }
+
+            } catch (error) {
+                console.error("Error fetching total users count from Firestore:", error);
+                totalUsersCount.textContent = 'Error loading';
+            } finally {
+                if (refreshAnalyticsBtn) {
+                    refreshAnalyticsBtn.textContent = 'Refresh Analytics';
+                    refreshAnalyticsBtn.disabled = false;
+                }
+            }
+        }
+
 
         // Initialize Lucide icons
         if (window.lucide) {
@@ -147,9 +217,6 @@
         // This onAuthStateChanged listener handles the specific authorization for admin.html
         auth.onAuthStateChanged(async user => {
             if (!user) {
-                // User is NOT logged in.
-                // initAuthCheck(false) (called above) will automatically redirect to auth.html.
-                // We just need to hide the loader and return.
                 if (pageLoader) pageLoader.style.display = 'none';
                 return; 
             }
@@ -167,7 +234,6 @@
                 }
             } catch (error) {
                 console.error("Error fetching user roles for admin.html:", error);
-                // If error fetching roles, treat as non-admin by leaving currentUserRoles empty.
                 currentUserRoles = []; 
             }
 
@@ -181,6 +247,10 @@
                 if (adminUid) adminUid.textContent = user.uid;
                 if (adminRoles) adminRoles.textContent = currentUserRoles.join(', ');
                 if (adminPanelDropdownLink) adminPanelDropdownLink.classList.remove('hidden');
+                
+                // --- Initial load of total users when admin panel is shown ---
+                fetchAndDisplayTotalUsers();
+
             } else {
                 // User IS logged in but NOT an admin. Redirect to 403.html.
                 console.warn("[Admin Panel]: Logged-in user is not an admin. Redirecting to 403.html.");
@@ -221,6 +291,11 @@
             }
         });
         // --- END Fetch All Users ---
+
+        // --- Refresh Analytics Button Listener ---
+        refreshAnalyticsBtn && refreshAnalyticsBtn.addEventListener('click', () => {
+            fetchAndDisplayTotalUsers(); // Call the function to refresh the user count
+        });
 
 
         // --- Logout Button Logic (if present in header) ---
