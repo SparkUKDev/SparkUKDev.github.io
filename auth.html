@@ -1,245 +1,362 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | Spark Youth</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/RkMkNqTB/download.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://i.ibb.co/RkMkNqTB/download.png"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Caveat:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/global.css" />
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: { sans: ['Outfit', 'sans-serif'], hand: ['Caveat', 'cursive'] },
+            fontFamily: {
+              sans: ["Outfit", "sans-serif"],
+              hand: ["Caveat", "cursive"],
+            },
             colors: {
-              spark: { yellow: '#FFD600', orange: '#FF9F1C', blue: '#2EC4B6', navy: '#011627', cream: '#FDFFFC', red: '#E71D36' }
-            }
-          }
-        }
-      }
+              spark: {
+                yellow: "#FFD600",
+                orange: "#FF9F1C",
+                blue: "#2EC4B6",
+                navy: "#011627",
+                cream: "#FDFFFC",
+                red: "#E71D36",
+              },
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-spark-cream text-spark-navy antialiased">
-    <div id="page-loader" role="status" aria-live="polite" aria-atomic="true" class="fixed inset-0 bg-spark-cream z-50 flex items-center justify-center">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
-        <p class="absolute mt-16 text-sm text-gray-400 font-bold animate-pulse">Loading...</p>
+  </head>
+  <body class="bg-spark-cream text-spark-navy antialiased">
+    <div
+      id="page-loader"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      class="fixed inset-0 bg-spark-cream z-50 flex items-center justify-center"
+    >
+      <div
+        class="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"
+      ></div>
+      <p class="absolute mt-16 text-sm text-gray-400 font-bold animate-pulse">
+        Loading...
+      </p>
     </div>
 
-    <div class="min-h-screen flex items-center justify-center bg-spark-cream p-4">
-        <div class="w-full max-w-4xl bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row h-[600px]">
-            
-            <!-- Left Side: Branding -->
-            <div class="bg-spark-navy text-white p-10 md:w-1/2 flex flex-col justify-between relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-spark-blue rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/3"></div>
-                <div class="absolute bottom-0 left-0 w-48 h-48 bg-spark-yellow rounded-full blur-3xl opacity-10 translate-y-1/3 -translate-x-1/3"></div>
-                
-                <div class="relative z-10">
-                    <div class="flex items-center gap-2 mb-6">
-                        <img src="https://i.ibb.co/RkMkNqTB/download.png" alt="Spark Youth logo" class="h-12 w-12 object-contain">
-                        <h1 class="text-2xl font-bold tracking-tight">Spark<span class="text-spark-blue">Youth</span></h1>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <h2 id="welcome-title" class="text-3xl md:text-4xl font-bold leading-tight">Welcome back!</h2>
-                        <p id="welcome-desc" class="text-gray-300 text-lg">We're so glad to see you again. Ready to check in?</p>
-                    </div>
-                </div>
+    <div
+      class="min-h-screen flex items-center justify-center bg-spark-cream p-4"
+    >
+      <div
+        class="w-full max-w-4xl bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row h-[600px]"
+      >
+        <!-- Left Side: Branding -->
+        <div
+          class="bg-spark-navy text-white p-10 md:w-1/2 flex flex-col justify-between relative overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-spark-blue rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/3"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 w-48 h-48 bg-spark-yellow rounded-full blur-3xl opacity-10 translate-y-1/3 -translate-x-1/3"
+          ></div>
 
-                <div class="relative z-10 text-sm text-gray-400">
-                    © Spark Youth 2025. Safe. Secure. Supportive.
-                </div>
+          <div class="relative z-10">
+            <div class="flex items-center gap-2 mb-6">
+              <img
+                src="https://i.ibb.co/RkMkNqTB/download.png"
+                alt="Spark Youth logo"
+                class="h-12 w-12 object-contain"
+              />
+              <h1 class="text-2xl font-bold tracking-tight">
+                Spark<span class="text-spark-blue">Youth</span>
+              </h1>
             </div>
 
-            <!-- Right Side: Form -->
-            <div class="p-10 md:w-1/2 flex flex-col justify-center bg-white">
-                <div class="max-w-sm mx-auto w-full space-y-8">
-                    <div class="text-center md:text-left">
-                        <h3 id="form-title" class="text-2xl font-bold text-spark-navy mb-2">Sign In</h3>
-                        <p id="form-subtitle" class="text-gray-500">Enter your details to access your account.</p>
-                    </div>
+            <div class="space-y-4">
+              <h2
+                id="welcome-title"
+                class="text-3xl md:text-4xl font-bold leading-tight"
+              >
+                Welcome back!
+              </h2>
+              <p id="welcome-desc" class="text-gray-300 text-lg">
+                We're so glad to see you again. Ready to check in?
+              </p>
+            </div>
+          </div>
 
-                    <div id="error-msg" role="alert" aria-live="assertive" aria-atomic="true" class="hidden bg-red-50 text-red-600 p-3 rounded-xl text-sm flex items-start gap-2">
-                        <i data-lucide="alert-circle" class="shrink-0 mt-0.5 w-4 h-4"></i>
-                        <span id="error-text"></span>
-                    </div>
+          <div class="relative z-10 text-sm text-gray-400">
+            © Spark Youth 2025. Safe. Secure. Supportive.
+          </div>
+        </div>
 
-                    <form id="auth-form" class="space-y-4">
-                        <div>
-                            <label for="email" class="block text-xs font-bold text-gray-500 uppercase mb-1">Email</label>
-                            <input type="email" id="email" class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none transition-all font-medium text-spark-navy" placeholder="you@example.com" required />
-                        </div>
-                        <div>
-                            <label for="password" class="block text-xs font-bold text-gray-500 uppercase mb-1">Password</label>
-                            <input type="password" id="password" class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none transition-all font-medium text-spark-navy" placeholder="••••••••" required />
-                        </div>
+        <!-- Right Side: Form -->
+        <div class="p-10 md:w-1/2 flex flex-col justify-center bg-white">
+          <div class="max-w-sm mx-auto w-full space-y-8">
+            <div class="text-center md:text-left">
+              <h3
+                id="form-title"
+                class="text-2xl font-bold text-spark-navy mb-2"
+              >
+                Sign In
+              </h3>
+              <p id="form-subtitle" class="text-gray-500">
+                Enter your details to access your account.
+              </p>
+            </div>
 
-                        <!-- Add a Username input field for signup, if desired -->
-                        <!-- If you want users to pick a username during signup, uncomment this block -->
-                        <!--
+            <div
+              id="error-msg"
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+              class="hidden bg-red-50 text-red-600 p-3 rounded-xl text-sm flex items-start gap-2"
+            >
+              <i data-lucide="alert-circle" class="shrink-0 mt-0.5 w-4 h-4"></i>
+              <span id="error-text"></span>
+            </div>
+
+            <form id="auth-form" class="space-y-4">
+              <div>
+                <label
+                  for="email"
+                  class="block text-xs font-bold text-gray-500 uppercase mb-1"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none transition-all font-medium text-spark-navy"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for="password"
+                  class="block text-xs font-bold text-gray-500 uppercase mb-1"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  id="password"
+                  class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none transition-all font-medium text-spark-navy"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+
+              <!-- Add a Username input field for signup, if desired -->
+              <!-- If you want users to pick a username during signup, uncomment this block -->
+              <!--
                         <div id="username-input-group" class="hidden">
                             <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Username</label>
                             <input type="text" id="signup-username" class="w-full p-3 rounded-xl border border-gray-200 focus:border-spark-blue focus:ring-2 focus:ring-spark-blue/20 outline-none transition-all font-medium text-spark-navy" placeholder="sparky_youth" minlength="3" maxlength="20" />
                         </div>
                         -->
 
-                        <button type="submit" id="submit-btn" class="w-full bg-spark-blue hover:bg-teal-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-spark-blue/30 transition-all active:scale-95 flex items-center justify-center gap-2">
-                            <span id="btn-text">Sign In</span> <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </button>
-                    </form>
+              <button
+                type="submit"
+                id="submit-btn"
+                class="w-full bg-spark-blue hover:bg-teal-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-spark-blue/30 transition-all active:scale-95 flex items-center justify-center gap-2"
+              >
+                <span id="btn-text">Sign In</span>
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </button>
+            </form>
 
-                    <div class="text-center pt-4 border-t border-gray-100">
-                        <p class="text-gray-500 text-sm">
-                            <span id="switch-text">Don't have an account? </span>
-                            <button id="toggle-auth" class="text-spark-blue font-bold hover:underline">Sign up</button>
-                        </p>
-                    </div>
-                </div>
+            <div class="text-center pt-4 border-t border-gray-100">
+              <p class="text-gray-500 text-sm">
+                <span id="switch-text">Don't have an account? </span>
+                <button
+                  id="toggle-auth"
+                  class="text-spark-blue font-bold hover:underline"
+                >
+                  Sign up
+                </button>
+              </p>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <script>
-        // FAIL-SAFE: Force remove loader after 4 seconds if JS/Firebase hangs
-        setTimeout(() => {
-            const loader = document.getElementById('page-loader');
-            if (loader) loader.style.display = 'none';
-            console.warn("Loader forced closed by fail-safe timer");
-        }, 4000);
+      // FAIL-SAFE: Force remove loader after 4 seconds if JS/Firebase hangs
+      setTimeout(() => {
+        const loader = document.getElementById("page-loader");
+        if (loader) loader.style.display = "none";
+        console.warn("Loader forced closed by fail-safe timer");
+      }, 4000);
     </script>
 
     <script type="module">
-        // --- UPDATED IMPORT ---
-        import { initAuthCheck, auth, signInWithEmailAndPassword, createUserWithEmailAndPasswordAndProfile } from './assets/js/firebase.js';
+      // --- UPDATED IMPORT ---
+      import {
+        initAuthCheck,
+        auth,
+        signInWithEmailAndPassword,
+        createUserWithEmailAndPasswordAndProfile,
+      } from "./assets/js/firebase.js";
 
-        // Initialize page logic
+      // Initialize page logic
+      try {
+        initAuthCheck(true);
+        if (window.lucide) lucide.createIcons();
+      } catch (e) {
+        console.warn("Init error:", e);
+        document.getElementById("page-loader").style.display = "none";
+      }
+
+      let isLogin = true;
+
+      const form = document.getElementById("auth-form");
+      const toggleBtn = document.getElementById("toggle-auth");
+      const emailInput = document.getElementById("email");
+      const passInput = document.getElementById("password");
+      const errorDiv = document.getElementById("error-msg");
+      const errorText = document.getElementById("error-text");
+      const submitBtn = document.getElementById("submit-btn");
+
+      // Reference to the optional username input field for signup
+      // const signupUsernameInputGroup = document.getElementById('username-input-group'); // Uncomment if using
+      // const signupUsernameInput = document.getElementById('signup-username'); // Uncomment if using
+
+      // UI Elements
+      const welcomeTitle = document.getElementById("welcome-title");
+      const welcomeDesc = document.getElementById("welcome-desc");
+      const formTitle = document.getElementById("form-title");
+      const formSubtitle = document.getElementById("form-subtitle");
+      const btnText = document.getElementById("btn-text");
+      const switchText = document.getElementById("switch-text");
+
+      toggleBtn.addEventListener("click", () => {
+        isLogin = !isLogin;
+        updateUI();
+        errorDiv.classList.add("hidden");
+      });
+
+      function updateUI() {
+        if (isLogin) {
+          welcomeTitle.textContent = "Welcome back!";
+          welcomeDesc.textContent =
+            "We're so glad to see you again. Ready to check in?";
+          formTitle.textContent = "Sign In";
+          formSubtitle.textContent =
+            "Enter your details to access your account.";
+          btnText.textContent = "Sign In";
+          switchText.textContent = "Don't have an account? ";
+          toggleBtn.textContent = "Sign up";
+          // if (signupUsernameInputGroup) signupUsernameInputGroup.classList.add('hidden'); // Uncomment if using
+        } else {
+          welcomeTitle.textContent = "Join our community.";
+          welcomeDesc.textContent =
+            "A safe space for you to be you. Find support, friends, and daily sparks.";
+          formTitle.textContent = "Create Account";
+          formSubtitle.textContent = "Start your journey with us today.";
+          btnText.textContent = "Sign Up";
+          switchText.textContent = "Already have an account? ";
+          toggleBtn.textContent = "Sign in";
+          // if (signupUsernameInputGroup) signupUsernameInputGroup.classList.remove('hidden'); // Uncomment if using
+          // if (signupUsernameInput) signupUsernameInput.focus(); // Uncomment if using
+        }
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        // --- FIX: Trim email and password values and add validation ---
+        const email = emailInput.value.trim();
+        const password = passInput.value.trim();
+        // const initialUsername = isLogin ? null : signupUsernameInput.value.trim(); // Uncomment if using username input
+
+        // Reset error display and disable button
+        errorDiv.classList.add("hidden");
+        submitBtn.disabled = true;
+        submitBtn.classList.add("opacity-70");
+
+        // --- Client-side validation ---
+        if (!email) {
+          errorText.textContent = "Email field cannot be empty.";
+          errorDiv.classList.remove("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-70");
+          return; // Stop execution
+        }
+        if (!password) {
+          errorText.textContent = "Password field cannot be empty.";
+          errorDiv.classList.remove("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-70");
+          return; // Stop execution
+        }
+        // Basic email format validation (more robust regex might be needed for production)
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          errorText.textContent = "Please enter a valid email address format.";
+          errorDiv.classList.remove("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-70");
+          return; // Stop execution
+        }
+        // --- End client-side validation ---
+
         try {
-            initAuthCheck(true);
-            if (window.lucide) lucide.createIcons();
-        } catch (e) {
-            console.warn("Init error:", e);
-            document.getElementById('page-loader').style.display = 'none';
+          if (isLogin) {
+            await signInWithEmailAndPassword(auth, email, password);
+          } else {
+            await createUserWithEmailAndPasswordAndProfile(
+              email,
+              password /* , initialUsername */
+            );
+          }
+          // Redirect handles automatically by initAuthCheck
+        } catch (err) {
+          console.error(err);
+          let msg = "An error occurred. Please try again.";
+          // Improved error messages for common auth issues
+          if (err.code === "auth/invalid-email")
+            msg = "That email address doesn't look right.";
+          if (
+            err.code === "auth/user-not-found" ||
+            err.code === "auth/wrong-password"
+          )
+            msg = "Invalid email or password.";
+          // Note: auth/invalid-credential might still appear for other reasons, but should be rarer now
+          if (err.code === "auth/invalid-credential")
+            msg =
+              "The provided credentials are invalid. Please check your email and password.";
+          if (err.code === "auth/email-already-in-use")
+            msg = "An account already exists with this email.";
+          if (err.code === "auth/weak-password")
+            msg = "Password should be at least 6 characters.";
+          if (err.code === "auth/user-disabled")
+            msg = "This account has been disabled. Please contact support.";
+          // Custom error from createUserWithEmailAndPasswordAndProfile if Firestore fails
+          if (
+            err.message &&
+            err.message.includes("Firestore profile creation failed")
+          )
+            msg =
+              "Account created, but failed to set up profile. Please contact support.";
+
+          errorText.textContent = msg;
+          errorDiv.classList.remove("hidden");
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-70");
         }
-
-        let isLogin = true;
-
-        const form = document.getElementById('auth-form');
-        const toggleBtn = document.getElementById('toggle-auth');
-        const emailInput = document.getElementById('email');
-        const passInput = document.getElementById('password');
-        const errorDiv = document.getElementById('error-msg');
-        const errorText = document.getElementById('error-text');
-        const submitBtn = document.getElementById('submit-btn');
-
-        // Reference to the optional username input field for signup
-        // const signupUsernameInputGroup = document.getElementById('username-input-group'); // Uncomment if using
-        // const signupUsernameInput = document.getElementById('signup-username'); // Uncomment if using
-
-
-        // UI Elements
-        const welcomeTitle = document.getElementById('welcome-title');
-        const welcomeDesc = document.getElementById('welcome-desc');
-        const formTitle = document.getElementById('form-title');
-        const formSubtitle = document.getElementById('form-subtitle');
-        const btnText = document.getElementById('btn-text');
-        const switchText = document.getElementById('switch-text');
-
-        toggleBtn.addEventListener('click', () => {
-            isLogin = !isLogin;
-            updateUI();
-            errorDiv.classList.add('hidden');
-        });
-
-        function updateUI() {
-            if (isLogin) {
-                welcomeTitle.textContent = "Welcome back!";
-                welcomeDesc.textContent = "We're so glad to see you again. Ready to check in?";
-                formTitle.textContent = "Sign In";
-                formSubtitle.textContent = "Enter your details to access your account.";
-                btnText.textContent = "Sign In";
-                switchText.textContent = "Don't have an account? ";
-                toggleBtn.textContent = "Sign up";
-                // if (signupUsernameInputGroup) signupUsernameInputGroup.classList.add('hidden'); // Uncomment if using
-            } else {
-                welcomeTitle.textContent = "Join our community.";
-                welcomeDesc.textContent = "A safe space for you to be you. Find support, friends, and daily sparks.";
-                formTitle.textContent = "Create Account";
-                formSubtitle.textContent = "Start your journey with us today.";
-                btnText.textContent = "Sign Up";
-                switchText.textContent = "Already have an account? ";
-                toggleBtn.textContent = "Sign in";
-                // if (signupUsernameInputGroup) signupUsernameInputGroup.classList.remove('hidden'); // Uncomment if using
-                // if (signupUsernameInput) signupUsernameInput.focus(); // Uncomment if using
-            }
-        }
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            // --- FIX: Trim email and password values and add validation ---
-            const email = emailInput.value.trim();
-            const password = passInput.value.trim();
-            // const initialUsername = isLogin ? null : signupUsernameInput.value.trim(); // Uncomment if using username input
-
-            // Reset error display and disable button
-            errorDiv.classList.add('hidden');
-            submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-70');
-
-            // --- Client-side validation ---
-            if (!email) {
-                errorText.textContent = "Email field cannot be empty.";
-                errorDiv.classList.remove('hidden');
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-70');
-                return; // Stop execution
-            }
-            if (!password) {
-                errorText.textContent = "Password field cannot be empty.";
-                errorDiv.classList.remove('hidden');
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-70');
-                return; // Stop execution
-            }
-            // Basic email format validation (more robust regex might be needed for production)
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                errorText.textContent = "Please enter a valid email address format.";
-                errorDiv.classList.remove('hidden');
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-70');
-                return; // Stop execution
-            }
-            // --- End client-side validation ---
-
-            try {
-                if (isLogin) {
-                    await signInWithEmailAndPassword(auth, email, password);
-                } else {
-                    await createUserWithEmailAndPasswordAndProfile(email, password /* , initialUsername */);
-                }
-                // Redirect handles automatically by initAuthCheck
-            } catch (err) {
-                console.error(err);
-                let msg = "An error occurred. Please try again.";
-                // Improved error messages for common auth issues
-                if (err.code === 'auth/invalid-email') msg = "That email address doesn't look right.";
-                if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') msg = "Invalid email or password.";
-                // Note: auth/invalid-credential might still appear for other reasons, but should be rarer now
-                if (err.code === 'auth/invalid-credential') msg = "The provided credentials are invalid. Please check your email and password.";
-                if (err.code === 'auth/email-already-in-use') msg = "An account already exists with this email.";
-                if (err.code === 'auth/weak-password') msg = "Password should be at least 6 characters.";
-                if (err.code === 'auth/user-disabled') msg = "This account has been disabled. Please contact support.";
-                // Custom error from createUserWithEmailAndPasswordAndProfile if Firestore fails
-                if (err.message && err.message.includes('Firestore profile creation failed')) msg = "Account created, but failed to set up profile. Please contact support.";
-                
-                errorText.textContent = msg;
-                errorDiv.classList.remove('hidden');
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-70');
-            }
-        });
+      });
     </script>
-</body>
+  </body>
 </html>
