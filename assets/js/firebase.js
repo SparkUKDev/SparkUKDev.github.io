@@ -198,4 +198,4 @@ export function initAuthCheck(isAuthPage = false, authPageRedirectTo = 'home.htm
 }
 
 // Export everything needed by other pages from HERE
-export { onAuthStateChanged, signInWithEmailAndPassword };
+export { onAuthStateChanged, signInWithEmailAndPassword, app };
