@@ -1,6 +1,6 @@
 
 // Configuration
-const API_KEY = "AIzaSyBVO6aM1Y7eBfiM4q1ZRGP1-MoJPF1fFrs"; 
+const API_KEY = "AIzaSyCwFPZVsLimH2hhO_Ar3u7V0EQtSgAsAFs"; 
 const MODEL_NAME = "gemini-2.5-flash";
 
 /**
